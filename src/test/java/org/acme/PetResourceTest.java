@@ -31,10 +31,10 @@ public class PetDataTest {
     }
 
     @Test
-    public void testPetAddEndpoint(){
+    public void testPetAddEndpointSuccess(){
         given()
                 .header("Content-Type","application/json")
-                .body("{\r\n    \"name\":\"neo\",\r\n  \"age\":10,\r\n   \"type\":\"Dog\"\r\n}")
+                .body("{\r\n    \"name\":\"Dane\",\r\n  \"age\":10,\r\n   \"type\":\"Bird\"\r\n}")
                 .when().post("data/pets/add")
                 .then()
                 .statusCode(200)
@@ -49,13 +49,13 @@ public class PetDataTest {
         given()
                 .header("Content-Type","application/json")
                 .pathParam("petId",1)
-                .body("{\n \"name\":\"Bobby\"\n }")
+                .body("{\n \"name\":\"Woofy\"\n }")
                 .when().put("data/pets/edit/{petId}")
                 .then()
                 .statusCode(200)
                 .body("petId",equalTo(1))
                 .body("petAge",notNullValue())
-                .body("petName",equalTo("Bobby"))
+                .body("petName",equalTo("Woofy"))
                 .body("petType",notNullValue());
     }
 
